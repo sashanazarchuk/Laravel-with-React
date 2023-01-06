@@ -1,5 +1,11 @@
-body{
+body {
   padding-top: 3rem;
   padding-bottom: 3rem;
 
+}
+
+.add-container {
+  width: 40rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }

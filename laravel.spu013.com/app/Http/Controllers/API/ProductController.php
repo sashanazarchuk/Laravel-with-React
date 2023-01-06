@@ -37,9 +37,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($n, $d)
     {
-        //
+        $name = $n;
+        $detail = $d;
+        $created_at = date("Y-m-d H:i:s");
+        $products = new Product;
+        $products->name = $name;
+        $products->detail = $detail;
+        $products->created_at = $created_at;
+        $products->save();
+        return "Product was added $products";
     }
 
     /**
@@ -82,8 +90,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        if($product)
+            $product->delete();
+        return response()->json(null);
     }
 }

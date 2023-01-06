@@ -19,5 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 // добавив маршрут products по маршруту передаю клас ProductController і метод index
 Route::get('/products', [ProductController::class, 'index']);
+Route::delete('/delete/{id}', [ProductController::class, 'destroy']);
+Route::post('/add/{n}/{d}', [ProductController::class, 'store']);
 
 

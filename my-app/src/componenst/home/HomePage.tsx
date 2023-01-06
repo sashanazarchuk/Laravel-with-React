@@ -14,11 +14,30 @@ const HomePage = () => {
             });
     }, []);
 
+
+    function Update() {
+        http.get<Array<IProductItem>>("api/products")
+            .then((resp) => {
+                console.log("List product server", resp);
+                setlist(resp.data);
+            });
+    }
+    const Delete = (id: number) => {
+        http.delete("api/delete/" + id)
+            .then((resp) => {
+                console.log("List product server", resp.data);
+                Update();
+            });
+    };
+
+
     const data = list.map(product => ( //перебираю елементи lista через map
         <tr key={product.id}> 
             <td>{product.id}</td>
             <td>{product.name}</td>
             <td>{product.detail}</td>
+            <td className="align-middle"><button onClick={() => Delete(product.id)} className="btn btn-danger d-block m-auto" value={product.id}>Видалити</button></td>
+
         </tr>
     ));
 
